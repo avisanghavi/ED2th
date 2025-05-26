@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Clock, TrendingUp, Shield, Zap, Users, Layers } from 'lucide-react';
@@ -32,59 +31,36 @@ const BenefitItem: React.FC<BenefitItemProps> = ({ icon, title, description, del
 
 const BenefitsSection = () => {
   const benefits = [
-    {
-      icon: <Clock className="h-6 w-6 text-company-cyan" />,
-      title: "Save Time",
-      description: "Automate repetitive tasks and focus on strategic initiatives that require human creativity.",
-      delay: 0.1
-    },
-    {
-      icon: <TrendingUp className="h-6 w-6 text-company-cyan" />,
-      title: "Increase Productivity",
-      description: "Execute complex workflows 24/7 with consistent quality and without human limitations.",
-      delay: 0.2
-    },
-    {
-      icon: <Shield className="h-6 w-6 text-company-cyan" />,
-      title: "Reduce Risk",
-      description: "Eliminate human error with AI that follows best practices consistently across all tasks.",
-      delay: 0.3
-    },
-    {
-      icon: <Zap className="h-6 w-6 text-company-cyan" />,
-      title: "Scale Operations",
-      description: "Add AI capacity instantly when demand increases without recruiting or training delays.",
-      delay: 0.4
-    },
-    {
-      icon: <Users className="h-6 w-6 text-company-cyan" />,
-      title: "Enhance Collaboration",
-      description: "Connect teams with AI assistants that share information seamlessly across departments.",
-      delay: 0.5
-    },
-    {
-      icon: <Layers className="h-6 w-6 text-company-cyan" />,
-      title: "Data-Driven Decisions",
-      description: "Make strategic choices with AI that analyzes vast datasets for actionable insights.",
-      delay: 0.6
-    }
+    // Benefits have been removed as requested
   ];
 
   return (
-    <section className="py-24 bg-gradient-to-b from-company-dark to-company-blue/90">
-      <div className="container px-4 mx-auto">
-        <motion.div 
-          initial={{ y: 20, opacity: 0 }}
-          whileInView={{ y: 0, opacity: 1 }}
-          transition={{ duration: 0.7 }}
-          viewport={{ once: true }}
-          className="text-center mb-16"
-        >
-          <h2 className="mb-4 text-3xl md:text-4xl font-bold text-white">Why Choose Autonomous AI Assistants</h2>
-          <p className="max-w-2xl mx-auto text-gray-300 text-lg">
-            Powerful benefits that transform how your business operates across every department
-          </p>
-        </motion.div>
+    <section className="py-16 relative overflow-hidden">
+      {/* Modern gradient background */}
+      <div className="absolute inset-0 bg-gradient-to-r from-indigo-900 via-blue-800 to-blue-600 z-0"></div>
+      
+      {/* Decorative background elements */}
+      <div className="absolute inset-0 overflow-hidden z-0">
+        {/* Mesh pattern overlay */}
+        <div className="absolute inset-0 bg-mesh opacity-10"></div>
+        
+        {/* Animated glass-like shapes */}
+        <div className="absolute top-1/4 -left-20 w-96 h-96 bg-blue-400/10 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-1/3 right-0 w-80 h-80 bg-indigo-400/10 rounded-full blur-3xl"></div>
+        
+        {/* Grid pattern */}
+        <div className="absolute inset-0 bg-grid-white/[0.03] bg-[size:50px_50px]"></div>
+        
+        {/* Glow effect */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-2/3 h-1/2 bg-blue-500/5 rounded-full blur-3xl"></div>
+      </div>
+      
+      <div className="container px-4 mx-auto relative z-10">
+        {/* Content area - Header and subtext removed as requested */}
+        <div className="py-8">
+          {/* Empty space where the heading was */}
+          <div className="h-8"></div>
+        </div>
         
         <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
           {benefits.map((benefit, index) => (

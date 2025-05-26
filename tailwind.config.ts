@@ -1,4 +1,3 @@
-
 import type { Config } from "tailwindcss";
 
 export default {
@@ -64,12 +63,12 @@ export default {
 					ring: 'hsl(var(--sidebar-ring))'
 				},
 				company: {
-					blue: '#0D47A1',
-					purple: '#6A1B9A',
-					cyan: '#00ACC1',
-					accent: '#FF5252',
-					dark: '#1A1A2E',
-					light: '#F8F9FA'
+					dark: "#11142b",
+					darker: "#0a0c1c",
+					blue: "#2563eb",
+					purple: "#7c3aed",
+					accent: "#38bdf8",
+					light: "#f8fafc",
 				}
 			},
 			borderRadius: {
@@ -105,18 +104,51 @@ export default {
 				'pulse-glow': {
 					'0%, 100%': { opacity: '0.6' },
 					'50%': { opacity: '1' }
-				}
+				},
+				float: {
+					"0%, 100%": { transform: "translateY(0) scale(1)" },
+					"50%": { transform: "translateY(-20px) scale(1.05)" },
+				},
+				floatReverse: {
+					"0%, 100%": { transform: "translateY(0) scale(1)" },
+					"50%": { transform: "translateY(20px) scale(1.05)" },
+				},
+				pulseSlow: {
+					"0%, 100%": { opacity: "0.4" },
+					"50%": { opacity: "0.7" },
+				},
+				gradientShift: {
+					"0%": { backgroundPosition: "0% 50%" },
+					"50%": { backgroundPosition: "100% 50%" },
+					"100%": { backgroundPosition: "0% 50%" },
+				},
+				flare: {
+					"0%": { opacity: "0.3", transform: "translateX(-20px) scale(0.8)" },
+					"50%": { opacity: "0.6", transform: "translateX(0) scale(1.2)" },
+					"100%": { opacity: "0.3", transform: "translateX(20px) scale(0.8)" },
+				},
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
 				'accordion-up': 'accordion-up 0.2s ease-out',
 				'fade-in': 'fade-in 0.7s ease-in-out',
 				'slide-up': 'slide-up 0.7s ease-out',
-				'pulse-glow': 'pulse-glow 3s ease-in-out infinite'
+				'pulse-glow': 'pulse-glow 3s ease-in-out infinite',
+				'float-slow': "float 8s ease-in-out infinite",
+				'float-slow-reverse': "floatReverse 10s ease-in-out infinite",
+				'pulse-slow': "pulseSlow 6s ease-in-out infinite",
+				'pulse-slow-alt': "pulseSlow 8s ease-in-out infinite 1s",
+				'gradient-slow': "gradientShift 15s ease infinite alternate",
+				'nebula': "gradientShift 30s ease-in-out infinite alternate",
+				'flare': "flare 8s ease-in-out infinite",
+				'flare-delayed': "flare 10s ease-in-out infinite 2s",
 			},
 			backgroundImage: {
-				'hero-gradient': 'linear-gradient(90deg, hsla(221, 45%, 73%, 1) 0%, hsla(220, 78%, 29%, 1) 100%)',
-				'feature-gradient': 'linear-gradient(90deg, hsla(277, 75%, 84%, 1) 0%, hsla(297, 50%, 51%, 1) 100%)'
+				'hero-gradient': 'radial-gradient(circle at center, rgba(124, 58, 237, 0.8) 0%, rgba(17, 20, 43, 0) 70%)',
+				'feature-gradient': 'linear-gradient(90deg, hsla(277, 75%, 84%, 1) 0%, hsla(297, 50%, 51%, 1) 100%)',
+				'mesh': "url('/mesh-bg.png')",
+				'grid-white': "linear-gradient(to right, rgba(255, 255, 255, 0.1) 1px, transparent 1px), linear-gradient(to bottom, rgba(255, 255, 255, 0.1) 1px, transparent 1px)",
+				'gradient-radial': "radial-gradient(var(--tw-gradient-stops))",
 			}
 		}
 	},
