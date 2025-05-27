@@ -4,6 +4,8 @@ import { motion, useScroll, useTransform } from 'framer-motion';
 import { Button } from '../components/ui/button';
 import { ArrowRight, Users, BarChart3, MessageSquare, Calendar, Target, CreditCard } from 'lucide-react';
 import Footer from '../components/Footer';
+import SingleRowTestimonials from '../components/SingleRowTestimonials';
+import IntegrationsConveyor from '../components/IntegrationsConveyor';
 
 // ScrollSection component with enhanced parallax effect
 const ScrollSection = ({ children, speed = 0.2, className = "" }) => {
@@ -149,6 +151,96 @@ const Stat = ({ value, label, icon: Icon, index = 0 }) => (
   </motion.div>
 );
 
+// Define the sales testimonials data
+const salesTestimonials = [
+  {
+    quote: "Alfred has increased our response rate by 320% and doubled our closing rate. The AI handles all initial conversations, letting our reps focus on high-value deals.",
+    author: "James Wilson",
+    company: "VP Sales, TechCorp Inc.",
+    image: "/testimonial1.jpg"
+  },
+  {
+    quote: "The way Alfred handles objections is remarkable. Prospects actually prefer talking to the AI for initial discussions - it's patient, informative, and never pushy.",
+    author: "Sophia Rodriguez",
+    company: "Sales Director, Nexus Solutions",
+    image: "/testimonial2.jpg"
+  },
+  {
+    quote: "Our sales cycle dropped from 45 days to just 18. Alfred qualifies leads, schedules demos, and follows up automatically - it's like having a perfect SDR working 24/7.",
+    author: "Marcus Chen",
+    company: "CRO, GrowthForce",
+    image: "/testimonial3.jpg"
+  },
+  {
+    quote: "We've seen a 42% increase in qualified meetings since implementing Alfred. It pre-qualifies prospects with precision we never thought possible from an AI.",
+    author: "Jessica Lee",
+    company: "Enterprise Sales Manager, CloudTech",
+    image: "/images/testimonial4.jpg"
+  },
+  {
+    quote: "Alfred's ability to personalize outreach at scale is incredible. We're engaging with 5x more leads while maintaining authenticity in every conversation.",
+    author: "Michael Johnson",
+    company: "Head of Sales Development, SalesPro",
+    image: "/images/testimonial5.jpg"
+  },
+  {
+    quote: "The most impressive part is how Alfred learns from every interaction. It adapts to our industry terminology and gets smarter with each conversation.",
+    author: "Rachel Kim",
+    company: "Sales Operations Director, GrowthX",
+    image: "/images/testimonial6.jpg"
+  },
+  {
+    quote: "Implementing Alfred was the best decision we made this year. Our close rate is up 78% and customer satisfaction scores have never been higher.",
+    author: "David Wilson",
+    company: "Sales Director, NextGen Solutions",
+    image: "/images/testimonial7.jpg"
+  }
+];
+
+// Sales-specific integrations
+const salesIntegrations = [
+  {
+    name: 'Salesforce',
+    logo: '/integrations/salesforce.svg',
+    description: 'CRM & Sales Automation'
+  },
+  {
+    name: 'HubSpot',
+    logo: '/integrations/hubspot.svg',
+    description: 'Marketing & Sales Platform'
+  },
+  {
+    name: 'Outreach',
+    logo: '/integrations/outreach.svg',
+    description: 'Sales Engagement'
+  },
+  {
+    name: 'Gong',
+    logo: '/integrations/gong.svg',
+    description: 'Revenue Intelligence'
+  },
+  {
+    name: 'ZoomInfo',
+    logo: '/integrations/zoominfo.svg',
+    description: 'B2B Database'
+  },
+  {
+    name: 'DocuSign',
+    logo: '/integrations/docusign.svg',
+    description: 'E-Signature Solution'
+  },
+  {
+    name: 'LinkedIn Sales Navigator',
+    logo: '/integrations/linkedin.svg',
+    description: 'Lead Generation'
+  },
+  {
+    name: 'Slack',
+    logo: '/integrations/slack.svg',
+    description: 'Team Communication'
+  }
+];
+
 const Sales = () => {
   // Scroll to top on page load
   useEffect(() => {
@@ -247,6 +339,13 @@ const Sales = () => {
           </div>
         </motion.div>
       </section>
+      
+      {/* Testimonials at the top (after Hero) */}
+      <SingleRowTestimonials 
+        testimonials={salesTestimonials}
+        title="What Sales Teams Are Saying"
+        color="blue"
+      />
       
       {/* Stats Section */}
       <ScrollSection speed={0.1} className="z-10">
@@ -427,50 +526,12 @@ const Sales = () => {
         </section>
       </ScrollSection>
       
-      {/* Testimonials Section */}
-      <ScrollSection speed={-0.15} className="z-10">
-        <section 
-          className="py-20" 
-          aria-labelledby="testimonials-heading"
-        >
-          <div className="container mx-auto px-4 md:px-6">
-            <motion.h2 
-              initial={{ y: 20, opacity: 0 }}
-              whileInView={{ y: 0, opacity: 1 }}
-              transition={{ duration: 0.6 }}
-              viewport={{ once: true }}
-              id="testimonials-heading"
-              className="text-3xl md:text-4xl font-bold mb-16 text-center"
-            >
-              What Sales Teams Are Saying
-            </motion.h2>
-            
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              <Testimonial 
-                quote="Alfred has increased our response rate by 320% and doubled our closing rate. The AI handles all initial conversations, letting our reps focus on high-value deals."
-                author="James Wilson"
-                company="VP Sales, TechCorp Inc."
-                image="/testimonial1.jpg"
-                index={0}
-              />
-              <Testimonial 
-                quote="The way Alfred handles objections is remarkable. Prospects actually prefer talking to the AI for initial discussions - it's patient, informative, and never pushy."
-                author="Sophia Rodriguez"
-                company="Sales Director, Nexus Solutions"
-                image="/testimonial2.jpg"
-                index={1}
-              />
-              <Testimonial 
-                quote="Our sales cycle dropped from 45 days to just 18. Alfred qualifies leads, schedules demos, and follows up automatically - it's like having a perfect SDR working 24/7."
-                author="Marcus Chen"
-                company="CRO, GrowthForce"
-                image="/testimonial3.jpg"
-                index={2}
-              />
-            </div>
-          </div>
-        </section>
-      </ScrollSection>
+      {/* Integrations at the bottom (before CTA) */}
+      <IntegrationsConveyor
+        integrations={salesIntegrations}
+        title="Sales Integrations"
+        color="blue"
+      />
       
       {/* CTA Section */}
       <ScrollSection speed={0.1} className="z-10">

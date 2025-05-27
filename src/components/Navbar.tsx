@@ -58,11 +58,11 @@ const Navbar = () => {
       }`}
     >
       {/* Top radial gradient line */}
-      <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-blue-500/50 to-transparent"></div>
+      <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-blue-500/60 to-transparent"></div>
       
       {/* Glassmorphism effect for scrolled state */}
       {isScrolled && (
-        <div className="absolute inset-0 bg-gradient-to-r from-blue-950/10 via-indigo-950/10 to-purple-950/10 backdrop-blur-xl"></div>
+        <div className="absolute inset-0 bg-gradient-to-r from-blue-950/5 via-indigo-950/5 to-purple-950/5 backdrop-blur-xl"></div>
       )}
       
       <nav className="w-full max-w-[2000px] mx-auto px-5 sm:px-8 lg:px-16 relative">
@@ -193,7 +193,7 @@ const Navbar = () => {
                   )}
                 </AnimatePresence>
               </div>
-            </div>
+          </div>
             <div className="flex items-center space-x-4">
               <motion.div
                 whileHover={{ scale: 1.05 }}
@@ -205,7 +205,7 @@ const Navbar = () => {
                 >
                   <LogIn className="w-4 h-4" />
                   <span>Log In</span>
-                </Button>
+            </Button>
               </motion.div>
               <motion.div
                 whileHover={{ scale: 1.05 }}
@@ -215,8 +215,8 @@ const Navbar = () => {
               >
                 <div className="absolute -inset-0.5 bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg blur opacity-75 group-hover:opacity-100 transition duration-1000 group-hover:duration-200 animate-pulse animation-delay-2000"></div>
                 <Button className="relative bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-700 hover:from-blue-700 hover:via-indigo-700 hover:to-purple-800 text-white border-none shadow-lg shadow-blue-500/20 hover:shadow-blue-500/40 transition-all duration-300 rounded-lg px-6 py-2 font-medium">
-                  Get Started
-                </Button>
+              Get Started
+            </Button>
               </motion.div>
             </div>
           </div>
@@ -300,8 +300,8 @@ const Navbar = () => {
                             animate={{ opacity: 1, x: 0 }}
                             transition={{ delay: index * 0.05 }}
                             whileHover={{ x: 5 }}
-                            onClick={() => setIsMobileMenuOpen(false)}
-                          >
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
                             <div className={`w-3 h-3 rounded-full ${item.color} mr-3 shadow-[0_0_8px_rgba(59,130,246,0.5)]`}></div>
                             <span className="font-medium">{item.label}</span>
                           </motion.a>
@@ -318,8 +318,8 @@ const Navbar = () => {
                   <div className="relative">
                     <div className="absolute -inset-0.5 bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg blur opacity-75 group-hover:opacity-100 transition duration-1000 group-hover:duration-200 animate-pulse animation-delay-2000"></div>
                     <Button className="relative bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-700 hover:from-blue-700 hover:via-indigo-700 hover:to-purple-800 text-white border-none shadow-lg shadow-blue-500/20 hover:shadow-blue-500/40 transition-all duration-300 w-full font-medium">
-                      Get Started
-                    </Button>
+                    Get Started
+                  </Button>
                   </div>
                 </div>
               </div>
@@ -328,7 +328,8 @@ const Navbar = () => {
         </AnimatePresence>
       </nav>
       
-      <div className="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-blue-500/20 to-transparent"></div>
+      {/* Bottom border line with increased brightness */}
+      <div className="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-blue-500/30 to-transparent"></div>
     </header>
   );
 };

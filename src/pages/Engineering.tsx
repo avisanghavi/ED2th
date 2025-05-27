@@ -4,6 +4,8 @@ import { motion, useScroll, useTransform } from 'framer-motion';
 import { Button } from '../components/ui/button';
 import { ArrowRight, Code, Bug, Layers, GitBranch, Database, Server, Workflow, Cpu } from 'lucide-react';
 import Footer from '../components/Footer';
+import SingleRowTestimonials from '../components/SingleRowTestimonials';
+import IntegrationsConveyor from '../components/IntegrationsConveyor';
 
 // ScrollSection component with enhanced parallax effect
 const ScrollSection = ({ children, speed = 0.2, className = "" }) => {
@@ -149,6 +151,96 @@ const Stat = ({ value, label, icon: Icon, index = 0 }) => (
   </motion.div>
 );
 
+// Define the engineering testimonials data
+const engineeringTestimonials = [
+  {
+    quote: "Edith has reduced our development time by 60%. The code she writes is clean, well-documented, and follows our best practices better than most human engineers.",
+    author: "Alex Rivera",
+    company: "CTO, CloudCore",
+    image: "/testimonial1.jpg"
+  },
+  {
+    quote: "The debugging capabilities are mind-blowing. Edith found a race condition that had been eluding our team for weeks, then fixed it with a elegant solution in minutes.",
+    author: "Priya Sharma",
+    company: "Lead Developer, Nextech",
+    image: "/testimonial2.jpg"
+  },
+  {
+    quote: "Our team was skeptical at first, but Edith has become our secret weapon. She handles our routine tasks while we focus on innovation. Our velocity has tripled.",
+    author: "David Kim",
+    company: "VP Engineering, FutureSoft",
+    image: "/testimonial3.jpg"
+  },
+  {
+    quote: "Edith optimized our codebase and reduced infrastructure costs by 42%. She identified bottlenecks we didn't even know existed.",
+    author: "Raj Patel",
+    company: "Lead Architect, InnovateSystems",
+    image: "/images/testimonial4.jpg"
+  },
+  {
+    quote: "The speed at which Edith can refactor complex systems is extraordinary. She modernized our legacy codebase in days instead of months.",
+    author: "Michelle Chen",
+    company: "Tech Lead, QuantumTech",
+    image: "/images/testimonial5.jpg"
+  },
+  {
+    quote: "Integrating Edith with our CI/CD pipeline has been transformative. She catches issues early and suggests optimizations that humans might miss.",
+    author: "Carlos Rodriguez",
+    company: "DevOps Manager, CloudSphere",
+    image: "/images/testimonial6.jpg"
+  },
+  {
+    quote: "Edith's ability to understand and adapt to our complex architecture was impressive. She now maintains systems that previously required multiple specialists.",
+    author: "Sarah Johnson",
+    company: "Engineering Director, TechForward",
+    image: "/images/testimonial7.jpg"
+  }
+];
+
+// Engineering-specific integrations
+const engineeringIntegrations = [
+  {
+    name: 'GitHub',
+    logo: '/integrations/github.svg',
+    description: 'Code Collaboration'
+  },
+  {
+    name: 'GitLab',
+    logo: '/integrations/gitlab.svg',
+    description: 'DevOps Platform'
+  },
+  {
+    name: 'Jira',
+    logo: '/integrations/jira.svg',
+    description: 'Project Management'
+  },
+  {
+    name: 'Jenkins',
+    logo: '/integrations/jenkins.svg',
+    description: 'CI/CD Pipeline'
+  },
+  {
+    name: 'Docker',
+    logo: '/integrations/docker.svg',
+    description: 'Containerization'
+  },
+  {
+    name: 'Kubernetes',
+    logo: '/integrations/kubernetes.svg',
+    description: 'Container Orchestration'
+  },
+  {
+    name: 'VS Code',
+    logo: '/integrations/vscode.svg',
+    description: 'Code Editor'
+  },
+  {
+    name: 'AWS',
+    logo: '/integrations/aws.svg',
+    description: 'Cloud Infrastructure'
+  }
+];
+
 const Engineering = () => {
   // Scroll to top on page load
   useEffect(() => {
@@ -247,6 +339,13 @@ const Engineering = () => {
           </div>
         </motion.div>
       </section>
+      
+      {/* Testimonials at the top (after Hero) */}
+      <SingleRowTestimonials 
+        testimonials={engineeringTestimonials}
+        title="What Engineers Are Saying"
+        color="cyan"
+      />
       
       {/* Stats Section */}
       <ScrollSection speed={0.1} className="z-10">
@@ -427,50 +526,12 @@ const Engineering = () => {
         </section>
       </ScrollSection>
       
-      {/* Testimonials Section */}
-      <ScrollSection speed={-0.15} className="z-10">
-        <section 
-          className="py-20" 
-          aria-labelledby="testimonials-heading"
-        >
-          <div className="container mx-auto px-4 md:px-6">
-            <motion.h2 
-              initial={{ y: 20, opacity: 0 }}
-              whileInView={{ y: 0, opacity: 1 }}
-              transition={{ duration: 0.6 }}
-              viewport={{ once: true }}
-              id="testimonials-heading"
-              className="text-3xl md:text-4xl font-bold mb-16 text-center"
-            >
-              What Engineers Are Saying
-            </motion.h2>
-            
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              <Testimonial 
-                quote="Edith has reduced our development time by 60%. The code she writes is clean, well-documented, and follows our best practices better than most human engineers."
-                author="Alex Rivera"
-                company="CTO, CloudCore"
-                image="/testimonial1.jpg"
-                index={0}
-              />
-              <Testimonial 
-                quote="The debugging capabilities are mind-blowing. Edith found a race condition that had been eluding our team for weeks, then fixed it with a elegant solution in minutes."
-                author="Priya Sharma"
-                company="Lead Developer, Nextech"
-                image="/testimonial2.jpg"
-                index={1}
-              />
-              <Testimonial 
-                quote="Our team was skeptical at first, but Edith has become our secret weapon. She handles our routine tasks while we focus on innovation. Our velocity has tripled."
-                author="David Kim"
-                company="VP Engineering, FutureSoft"
-                image="/testimonial3.jpg"
-                index={2}
-              />
-            </div>
-          </div>
-        </section>
-      </ScrollSection>
+      {/* Integrations at the bottom (before CTA) */}
+      <IntegrationsConveyor
+        integrations={engineeringIntegrations}
+        title="Engineering Integrations"
+        color="cyan"
+      />
       
       {/* CTA Section */}
       <ScrollSection speed={0.1} className="z-10">

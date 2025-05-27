@@ -4,6 +4,8 @@ import { motion, useScroll, useTransform } from 'framer-motion';
 import { Button } from '../components/ui/button';
 import { ArrowRight, BarChart3, TrendingUp, Target, Megaphone, PieChart, MessageSquare, BarChart2 } from 'lucide-react';
 import Footer from '../components/Footer';
+import SingleRowTestimonials from '../components/SingleRowTestimonials';
+import IntegrationsConveyor from '../components/IntegrationsConveyor';
 
 // ScrollSection component with enhanced parallax effect
 const ScrollSection = ({ children, speed = 0.2, className = "" }) => {
@@ -149,6 +151,96 @@ const Stat = ({ value, label, icon: Icon, index = 0 }) => (
   </motion.div>
 );
 
+// Define the marketing testimonials data
+const marketingTestimonials = [
+  {
+    quote: "MJ helped us increase our content output by 300% while maintaining consistent brand voice. The ROI tracking is phenomenal.",
+    author: "Sarah Johnson",
+    company: "CMO, TechVision Inc.",
+    image: "/images/testimonial1.jpg"
+  },
+  {
+    quote: "The predictive targeting capabilities have completely transformed our approach to audience segmentation. We're seeing 40% higher engagement.",
+    author: "Michael Chen",
+    company: "Digital Marketing Director, Novus",
+    image: "/images/testimonial2.jpg"
+  },
+  {
+    quote: "What impressed me most was MJ's ability to analyze trends across multiple platforms and create coordinated campaign strategies. Game changer.",
+    author: "Aisha Patel",
+    company: "Head of Growth, MarketSphere",
+    image: "/images/testimonial3.jpg"
+  },
+  {
+    quote: "MJ creates content that genuinely resonates with our audience. Our engagement metrics are up 57% across all platforms since implementing.",
+    author: "Thomas Wright",
+    company: "Content Director, MediaPulse",
+    image: "/images/testimonial4.jpg"
+  },
+  {
+    quote: "Our campaign performance has improved dramatically. MJ optimizes in real-time and provides insights we would never have discovered ourselves.",
+    author: "Emily Chen",
+    company: "Marketing VP, FutureEdge",
+    image: "/images/testimonial5.jpg"
+  },
+  {
+    quote: "The SEO improvements alone justified the investment. MJ continually analyzes performance and makes adjustments that have propelled us to top rankings.",
+    author: "Jason Kim",
+    company: "Digital Strategy Lead, WebForce",
+    image: "/images/testimonial6.jpg"
+  },
+  {
+    quote: "MJ helps us maintain a consistent brand voice across dozens of channels while still tailoring content to each platform's unique audience.",
+    author: "Laura Martinez",
+    company: "Brand Director, Elevate Marketing",
+    image: "/images/testimonial7.jpg"
+  }
+];
+
+// Marketing-specific integrations
+const marketingIntegrations = [
+  {
+    name: 'HubSpot',
+    logo: '/integrations/hubspot.svg',
+    description: 'Marketing & Sales Platform'
+  },
+  {
+    name: 'Mailchimp',
+    logo: '/integrations/mailchimp.svg',
+    description: 'Email Marketing'
+  },
+  {
+    name: 'Google Analytics',
+    logo: '/integrations/google-analytics.svg',
+    description: 'Web Analytics'
+  },
+  {
+    name: 'Meta Ads',
+    logo: '/integrations/meta.svg',
+    description: 'Social Media Advertising'
+  },
+  {
+    name: 'SEMrush',
+    logo: '/integrations/semrush.svg',
+    description: 'SEO & Content Marketing'
+  },
+  {
+    name: 'Canva',
+    logo: '/integrations/canva.svg',
+    description: 'Graphic Design'
+  },
+  {
+    name: 'Hootsuite',
+    logo: '/integrations/hootsuite.svg',
+    description: 'Social Media Management'
+  },
+  {
+    name: 'Ahrefs',
+    logo: '/integrations/ahrefs.svg',
+    description: 'SEO Tools'
+  }
+];
+
 const Marketing = () => {
   // Scroll to top on page load
   useEffect(() => {
@@ -168,7 +260,7 @@ const Marketing = () => {
       {/* Background elements */}
       <div className="fixed inset-0 pointer-events-none overflow-hidden z-0">
         <FloatingElement top={20} left={15} size={300} color="bg-purple-600/5" delay={0.2} />
-        <FloatingElement top={60} left={70} size={350} color="bg-pink-600/5" delay={0.3} />
+        <FloatingElement top={60} left={70} size={350} color="bg-pink-500/5" delay={0.3} />
         <FloatingElement top={80} left={30} size={320} color="bg-purple-800/5" delay={0.1} />
       </div>
       
@@ -247,6 +339,13 @@ const Marketing = () => {
           </div>
         </motion.div>
       </section>
+      
+      {/* Testimonials at the top (after Hero) */}
+      <SingleRowTestimonials 
+        testimonials={marketingTestimonials}
+        title="What Marketers Are Saying"
+        color="purple"
+      />
       
       {/* Stats Section */}
       <ScrollSection speed={0.1} className="z-10">
@@ -427,50 +526,12 @@ const Marketing = () => {
         </section>
       </ScrollSection>
       
-      {/* Testimonials Section */}
-      <ScrollSection speed={-0.15} className="z-10">
-        <section 
-          className="py-20" 
-          aria-labelledby="testimonials-heading"
-        >
-          <div className="container mx-auto px-4 md:px-6">
-            <motion.h2 
-              initial={{ y: 20, opacity: 0 }}
-              whileInView={{ y: 0, opacity: 1 }}
-              transition={{ duration: 0.6 }}
-              viewport={{ once: true }}
-              id="testimonials-heading"
-              className="text-3xl md:text-4xl font-bold mb-16 text-center"
-            >
-              What Marketers Are Saying
-            </motion.h2>
-            
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              <Testimonial 
-                quote="MJ helped us increase our content output by 300% while maintaining consistent brand voice. The ROI tracking is phenomenal."
-                author="Sarah Johnson"
-                company="CMO, TechVision Inc."
-                image="/images/testimonial1.jpg"
-                index={0}
-              />
-              <Testimonial 
-                quote="The predictive targeting capabilities have completely transformed our approach to audience segmentation. We're seeing 40% higher engagement."
-                author="Michael Chen"
-                company="Digital Marketing Director, Novus"
-                image="/images/testimonial2.jpg"
-                index={1}
-              />
-              <Testimonial 
-                quote="What impressed me most was MJ's ability to analyze trends across multiple platforms and create coordinated campaign strategies. Game changer."
-                author="Aisha Patel"
-                company="Head of Growth, MarketSphere"
-                image="/images/testimonial3.jpg"
-                index={2}
-              />
-            </div>
-          </div>
-        </section>
-      </ScrollSection>
+      {/* Integrations at the bottom (before CTA) */}
+      <IntegrationsConveyor
+        integrations={marketingIntegrations}
+        title="Marketing Integrations"
+        color="purple"
+      />
       
       {/* CTA Section */}
       <ScrollSection speed={0.1} className="z-10">

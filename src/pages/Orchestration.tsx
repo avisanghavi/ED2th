@@ -4,6 +4,8 @@ import { motion, useScroll, useTransform } from 'framer-motion';
 import { Button } from '../components/ui/button';
 import { ArrowRight, Network, Users, Workflow, BarChart3, ArrowUpDown, Calendar, Gauge } from 'lucide-react';
 import Footer from '../components/Footer';
+import SingleRowTestimonials from '../components/SingleRowTestimonials';
+import IntegrationsConveyor from '../components/IntegrationsConveyor';
 
 // ScrollSection component with enhanced parallax effect
 const ScrollSection = ({ children, speed = 0.2, className = "" }) => {
@@ -149,6 +151,96 @@ const Stat = ({ value, label, icon: Icon, index = 0 }) => (
   </motion.div>
 );
 
+// Define the orchestration testimonials data
+const orchestrationTestimonials = [
+  {
+    quote: "Jarvis has transformed how our departments collaborate. Information flows seamlessly, everyone stays aligned, and our execution speed has more than doubled.",
+    author: "Jennifer Torres",
+    company: "COO, FutureScale",
+    image: "/testimonial1.jpg"
+  },
+  {
+    quote: "The way Jarvis coordinates our AI assistants is revolutionary. It's like having an executive team that works 24/7, keeping everything on track and everyone informed.",
+    author: "Robert Chang",
+    company: "CEO, NexGen Solutions",
+    image: "/testimonial2.jpg"
+  },
+  {
+    quote: "Our cross-functional initiatives used to get stuck in silos. With Jarvis orchestrating the workflow, we've eliminated bottlenecks and seen a 300% improvement in delivery times.",
+    author: "Elena Rodriguez",
+    company: "Chief Strategy Officer, Innovate Inc.",
+    image: "/testimonial3.jpg"
+  },
+  {
+    quote: "Jarvis revolutionized how our teams collaborate. It's like having a brilliant project manager who never sleeps and coordinates everything flawlessly.",
+    author: "David Wilson",
+    company: "CTO, InnovateCorp",
+    image: "/images/testimonial4.jpg"
+  },
+  {
+    quote: "The dependency mapping alone saved us countless hours. Jarvis predicts bottlenecks before they happen and keeps everything on track.",
+    author: "Elena Rodriguez",
+    company: "Head of Operations, Nexus Systems",
+    image: "/images/testimonial5.jpg"
+  },
+  {
+    quote: "Our cross-functional teams are now seamlessly integrated. Information flows exactly where it's needed, when it's needed. Game changer.",
+    author: "Raj Patel",
+    company: "VP of Product, FutureTech",
+    image: "/images/testimonial6.jpg"
+  },
+  {
+    quote: "Jarvis has become our strategic advantage. It identifies opportunities for cross-team synergies that humans often miss and ensures nothing falls through the cracks.",
+    author: "Sarah Johnson",
+    company: "Chief Digital Officer, TechForward",
+    image: "/images/testimonial7.jpg"
+  }
+];
+
+// Orchestration-specific integrations
+const orchestrationIntegrations = [
+  {
+    name: 'Asana',
+    logo: '/integrations/asana.svg',
+    description: 'Project Management'
+  },
+  {
+    name: 'Slack',
+    logo: '/integrations/slack.svg',
+    description: 'Team Communication'
+  },
+  {
+    name: 'Microsoft Teams',
+    logo: '/integrations/teams.svg',
+    description: 'Collaboration Platform'
+  },
+  {
+    name: 'Trello',
+    logo: '/integrations/trello.svg',
+    description: 'Task Management'
+  },
+  {
+    name: 'Notion',
+    logo: '/integrations/notion.svg',
+    description: 'Knowledge Management'
+  },
+  {
+    name: 'Monday',
+    logo: '/integrations/monday.svg',
+    description: 'Work OS'
+  },
+  {
+    name: 'Airtable',
+    logo: '/integrations/airtable.svg',
+    description: 'Database Platform'
+  },
+  {
+    name: 'ClickUp',
+    logo: '/integrations/clickup.svg',
+    description: 'Productivity Platform'
+  }
+];
+
 const Orchestration = () => {
   // Scroll to top on page load
   useEffect(() => {
@@ -247,6 +339,13 @@ const Orchestration = () => {
           </div>
         </motion.div>
       </section>
+      
+      {/* Testimonials at the top (after Hero) */}
+      <SingleRowTestimonials 
+        testimonials={orchestrationTestimonials}
+        title="What Leaders Are Saying"
+        color="green"
+      />
       
       {/* Stats Section */}
       <ScrollSection speed={0.1} className="z-10">
@@ -427,71 +526,12 @@ const Orchestration = () => {
         </section>
       </ScrollSection>
       
-      {/* Testimonials Section */}
-      <ScrollSection speed={-0.15} className="z-10">
-        <section 
-          className="py-20" 
-          aria-labelledby="testimonials-heading"
-        >
-          <div className="container mx-auto px-4 md:px-6">
-            <motion.h2 
-              initial={{ y: 20, opacity: 0 }}
-              whileInView={{ y: 0, opacity: 1 }}
-              transition={{ duration: 0.6 }}
-              viewport={{ once: true }}
-              id="testimonials-heading"
-              className="text-3xl md:text-4xl font-bold mb-16 text-center"
-            >
-              What Leaders Are Saying
-            </motion.h2>
-            
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              <Testimonial 
-                quote="Jarvis has transformed how our departments collaborate. Information flows seamlessly, everyone stays aligned, and our execution speed has more than doubled."
-                author="Jennifer Torres"
-                company="COO, FutureScale"
-                image="/testimonial1.jpg"
-                index={0}
-              />
-              <Testimonial 
-                quote="The way Jarvis coordinates our AI assistants is revolutionary. It's like having an executive team that works 24/7, keeping everything on track and everyone informed."
-                author="Robert Chang"
-                company="CEO, NexGen Solutions"
-                image="/testimonial2.jpg"
-                index={1}
-              />
-              <Testimonial 
-                quote="Our cross-functional initiatives used to get stuck in silos. With Jarvis orchestrating the workflow, we've eliminated bottlenecks and seen a 300% improvement in delivery times."
-                author="Elena Rodriguez"
-                company="Chief Strategy Officer, Innovate Inc."
-                image="/testimonial3.jpg"
-                index={2}
-              />
-              <Testimonial 
-                quote="Jarvis revolutionized how our teams collaborate. It's like having a brilliant project manager who never sleeps and coordinates everything flawlessly."
-                author="David Wilson"
-                company="CTO, InnovateCorp"
-                image="/images/testimonial4.jpg"
-                index={0}
-              />
-              <Testimonial 
-                quote="The dependency mapping alone saved us countless hours. Jarvis predicts bottlenecks before they happen and keeps everything on track."
-                author="Elena Rodriguez"
-                company="Head of Operations, Nexus Systems"
-                image="/images/testimonial5.jpg"
-                index={1}
-              />
-              <Testimonial 
-                quote="Our cross-functional teams are now seamlessly integrated. Information flows exactly where it's needed, when it's needed. Game changer."
-                author="Raj Patel"
-                company="VP of Product, FutureTech"
-                image="/images/testimonial6.jpg"
-                index={2}
-              />
-            </div>
-          </div>
-        </section>
-      </ScrollSection>
+      {/* Integrations at the bottom (before CTA) */}
+      <IntegrationsConveyor
+        integrations={orchestrationIntegrations}
+        title="Orchestration Integrations"
+        color="green"
+      />
       
       {/* CTA Section */}
       <ScrollSection speed={0.1} className="z-10">
