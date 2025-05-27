@@ -219,7 +219,7 @@ const DemoSection = () => {
       ></div>
       
       {/* Dark overlay for readability */}
-      <div className="absolute inset-0 bg-black/70 z-0"></div>
+      <div className="absolute inset-0 bg-black/58 z-0"></div>
       
       {/* Decorative elements */}
       <div className="absolute inset-0 overflow-hidden z-0">
