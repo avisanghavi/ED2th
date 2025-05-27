@@ -225,7 +225,7 @@ const Sales = () => {
           >
             <div className="relative w-full aspect-square max-w-md mx-auto">
               <img 
-                src="/Alfred.png" 
+                src="/images/Alfred.png" 
                 alt="Alfred - Sales Mastermind AI Assistant" 
                 className="w-full h-full object-contain z-10 relative"
               />

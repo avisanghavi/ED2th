@@ -225,11 +225,11 @@ const Marketing = () => {
           >
             <div className="relative w-full aspect-square max-w-md mx-auto">
               <img 
-                src="/MJ.png" 
-                alt="MJ - Marketing Virtuoso AI Assistant" 
+                src="/images/MJ.png" 
+                alt="MJ - Marketing Maestro AI Assistant" 
                 className="w-full h-full object-contain z-10 relative"
               />
-              <div className="absolute inset-0 bg-gradient-to-r from-purple-500/20 to-pink-500/20 rounded-full blur-3xl transform -translate-y-10"></div>
+              <div className="absolute inset-0 bg-gradient-to-r from-purple-500/20 to-purple-600/20 rounded-full blur-3xl transform -translate-y-10"></div>
             </div>
           </motion.div>
         </div>
@@ -450,21 +450,21 @@ const Marketing = () => {
                 quote="MJ helped us increase our content output by 300% while maintaining consistent brand voice. The ROI tracking is phenomenal."
                 author="Sarah Johnson"
                 company="CMO, TechVision Inc."
-                image="/testimonial1.jpg"
+                image="/images/testimonial1.jpg"
                 index={0}
               />
               <Testimonial 
                 quote="The predictive targeting capabilities have completely transformed our approach to audience segmentation. We're seeing 40% higher engagement."
                 author="Michael Chen"
                 company="Digital Marketing Director, Novus"
-                image="/testimonial2.jpg"
+                image="/images/testimonial2.jpg"
                 index={1}
               />
               <Testimonial 
                 quote="What impressed me most was MJ's ability to analyze trends across multiple platforms and create coordinated campaign strategies. Game changer."
                 author="Aisha Patel"
                 company="Head of Growth, MarketSphere"
-                image="/testimonial3.jpg"
+                image="/images/testimonial3.jpg"
                 index={2}
               />
             </div>

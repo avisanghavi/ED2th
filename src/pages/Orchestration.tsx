@@ -225,11 +225,11 @@ const Orchestration = () => {
           >
             <div className="relative w-full aspect-square max-w-md mx-auto">
               <img 
-                src="/jarvis.png" 
+                src="/images/Jarvis.png" 
                 alt="Jarvis - Team Orchestrator AI Assistant" 
                 className="w-full h-full object-contain z-10 relative"
               />
-              <div className="absolute inset-0 bg-gradient-to-r from-green-500/20 to-emerald-500/20 rounded-full blur-3xl transform -translate-y-10"></div>
+              <div className="absolute inset-0 bg-gradient-to-r from-green-500/20 to-emerald-600/20 rounded-full blur-3xl transform -translate-y-10"></div>
             </div>
           </motion.div>
         </div>
@@ -465,6 +465,27 @@ const Orchestration = () => {
                 author="Elena Rodriguez"
                 company="Chief Strategy Officer, Innovate Inc."
                 image="/testimonial3.jpg"
+                index={2}
+              />
+              <Testimonial 
+                quote="Jarvis revolutionized how our teams collaborate. It's like having a brilliant project manager who never sleeps and coordinates everything flawlessly."
+                author="David Wilson"
+                company="CTO, InnovateCorp"
+                image="/images/testimonial4.jpg"
+                index={0}
+              />
+              <Testimonial 
+                quote="The dependency mapping alone saved us countless hours. Jarvis predicts bottlenecks before they happen and keeps everything on track."
+                author="Elena Rodriguez"
+                company="Head of Operations, Nexus Systems"
+                image="/images/testimonial5.jpg"
+                index={1}
+              />
+              <Testimonial 
+                quote="Our cross-functional teams are now seamlessly integrated. Information flows exactly where it's needed, when it's needed. Game changer."
+                author="Raj Patel"
+                company="VP of Product, FutureTech"
+                image="/images/testimonial6.jpg"
                 index={2}
               />
             </div>

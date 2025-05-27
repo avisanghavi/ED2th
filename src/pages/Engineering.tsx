@@ -225,11 +225,11 @@ const Engineering = () => {
           >
             <div className="relative w-full aspect-square max-w-md mx-auto">
               <img 
-                src="/Ed1th.png" 
-                alt="Edith - Code Alchemist AI Assistant" 
+                src="/images/Ed1th.png" 
+                alt="Ed1th - Engineering Genius AI Assistant" 
                 className="w-full h-full object-contain z-10 relative"
               />
-              <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/20 to-blue-500/20 rounded-full blur-3xl transform -translate-y-10"></div>
+              <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/20 to-cyan-600/20 rounded-full blur-3xl transform -translate-y-10"></div>
             </div>
           </motion.div>
         </div>

@@ -212,7 +212,7 @@ const DemoSection = () => {
       <div 
         className="absolute inset-0 z-0"
         style={{ 
-          backgroundImage: 'url("/TEAM.png")',
+          backgroundImage: 'url("/images/TEAM.png")',
           backgroundSize: 'cover', 
           backgroundPosition: 'center'
         }}
