@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { Button } from './ui/button';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, ChevronDown } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -20,101 +21,212 @@ const Navbar = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Close dropdown on mobile menu open
+  useEffect(() => {
+    if (isMobileMenuOpen) setIsDropdownOpen(false);
+  }, [isMobileMenuOpen]);
+
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 w-full ${
-        isScrolled ? 'bg-company-dark/95 backdrop-blur-sm shadow-lg' : 'bg-transparent'
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 w-full ${
+        isScrolled
+          ? 'bg-gradient-to-r from-company-dark/95 via-company-dark/98 to-company-dark/95 backdrop-blur-lg shadow-lg shadow-blue-500/5 py-3'
+          : 'bg-transparent py-5'
       }`}
     >
-      <nav className="w-full max-w-[2000px] mx-auto px-5 sm:px-8 lg:px-12 py-4">
+      <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-blue-500/30 to-transparent opacity-50"></div>
+      
+      <nav className="w-full max-w-[2000px] mx-auto px-5 sm:px-8 lg:px-12">
         <div className="flex items-center justify-between w-full">
           <div className="flex items-center">
-            <a href="/" className="text-white font-bold text-2xl tracking-tight group">
-              <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-600">Jarvis</span>
-              <span className="block h-0.5 max-w-0 bg-gradient-to-r from-blue-400 to-purple-600 transition-all duration-500 group-hover:max-w-full"></span>
-            </a>
+            <motion.a 
+              href="/" 
+              className="text-white font-bold text-2xl tracking-tight group relative"
+              whileHover={{ scale: 1.05 }}
+              transition={{ type: "spring", stiffness: 400, damping: 10 }}
+            >
+              <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-400 via-purple-500 to-blue-500 animate-gradient">Jarvis</span>
+              <span className="block h-0.5 max-w-0 bg-gradient-to-r from-blue-400 via-purple-600 to-blue-500 transition-all duration-500 group-hover:max-w-full absolute bottom-0 left-0"></span>
+            </motion.a>
           </div>
 
           <div className="hidden md:flex items-center">
-            <div className="flex items-center space-x-5 mr-2">
-              <a href="/sales" className="text-gray-300 hover:text-white transition-colors relative group">
-                Sales
+            <div className="flex items-center space-x-6 mr-4">
+              {/* See the Proof link */}
+              <motion.a 
+                href="/proof" 
+                className="text-gray-300 hover:text-white transition-colors relative group px-3 py-2"
+                whileHover={{ y: -2 }}
+                transition={{ type: "spring", stiffness: 400, damping: 17 }}
+              >
+                See the Proof
                 <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-400 to-purple-600 transition-all duration-300 group-hover:w-full"></span>
-              </a>
-              <a href="/marketing" className="text-gray-300 hover:text-white transition-colors relative group">
-                Marketing
-                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-400 to-purple-600 transition-all duration-300 group-hover:w-full"></span>
-              </a>
-              <a href="/engineering" className="text-gray-300 hover:text-white transition-colors relative group">
-                Engineering
-                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-400 to-purple-600 transition-all duration-300 group-hover:w-full"></span>
-              </a>
-              <a href="/orchestration" className="text-gray-300 hover:text-white transition-colors relative group">
-                Orchestration
-                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-400 to-purple-600 transition-all duration-300 group-hover:w-full"></span>
-              </a>
+              </motion.a>
+              
+              {/* Meet The Team Dropdown */}
+              <div className="relative group" onMouseEnter={() => setIsDropdownOpen(true)} onMouseLeave={() => setIsDropdownOpen(false)}>
+                <motion.button
+                  className="flex items-center text-gray-300 hover:text-white transition-colors relative group focus:outline-none px-3 py-2"
+                  onClick={() => setIsDropdownOpen((open) => !open)}
+                  aria-haspopup="true"
+                  aria-expanded={isDropdownOpen ? 'true' : 'false'}
+                  whileHover={{ y: -2 }}
+                  transition={{ type: "spring", stiffness: 400, damping: 17 }}
+                >
+                  Meet The Team
+                  <ChevronDown className="ml-1 w-4 h-4 transition-transform duration-200" style={{ transform: isDropdownOpen ? 'rotate(180deg)' : 'rotate(0deg)' }} />
+                  <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-400 to-purple-600 transition-all duration-300 group-hover:w-full"></span>
+                </motion.button>
+                <AnimatePresence>
+                  {isDropdownOpen && (
+                    <motion.div
+                      initial={{ opacity: 0, y: 10, scale: 0.95 }}
+                      animate={{ opacity: 1, y: 0, scale: 1 }}
+                      exit={{ opacity: 0, y: 10, scale: 0.95 }}
+                      transition={{ duration: 0.2, type: "spring", stiffness: 300 }}
+                      className="absolute left-0 mt-2 w-64 rounded-xl overflow-hidden backdrop-blur-xl border border-white/10 z-50"
+                      style={{
+                        background: "linear-gradient(145deg, rgba(30,30,60,0.9), rgba(20,20,40,0.8))",
+                        boxShadow: "0 10px 25px -5px rgba(0, 0, 0, 0.4), 0 8px 10px -6px rgba(0, 0, 0, 0.2), 0 0 0 1px rgba(255, 255, 255, 0.05) inset, 0 0 15px rgba(120, 120, 255, 0.15)"
+                      }}
+                    >
+                      <div className="py-1">
+                        {[
+                          { href: "/sales", label: "Sales", color: "from-blue-500 to-blue-600" },
+                          { href: "/marketing", label: "Marketing", color: "from-purple-500 to-purple-600" },
+                          { href: "/engineering", label: "Engineering", color: "from-cyan-500 to-cyan-600" },
+                          { href: "/orchestration", label: "Orchestration", color: "from-green-500 to-green-600" }
+                        ].map((item, index) => (
+                          <motion.a
+                            key={item.href}
+                            href={item.href}
+                            className="block px-5 py-3 text-gray-300 hover:text-white transition-colors group relative"
+                            whileHover={{ x: 5, backgroundColor: "rgba(255,255,255,0.05)" }}
+                            transition={{ type: "spring", stiffness: 400, damping: 17 }}
+                            initial={{ opacity: 0, y: -10 }}
+                            animate={{ opacity: 1, y: 0 }}
+                          >
+                            <div className="flex items-center">
+                              <div className={`w-2 h-2 rounded-full bg-gradient-to-r ${item.color} mr-2.5`}></div>
+                              <span>{item.label}</span>
+                            </div>
+                            <span className="absolute inset-y-0 left-0 w-0.5 bg-gradient-to-b from-transparent via-blue-500 to-transparent transition-all duration-300 opacity-0 group-hover:opacity-100"></span>
+                          </motion.a>
+                        ))}
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
             </div>
-            <div className="flex items-center space-x-3">
-              <Button variant="ghost" className="text-gray-300 hover:text-white hover:bg-company-dark/50">
-                Log In
-              </Button>
-              <Button className="bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white border-none shadow-md hover:shadow-lg transition-all duration-300">
-                Get Started
-              </Button>
+            <div className="flex items-center space-x-4">
+              <motion.div
+                whileHover={{ scale: 1.05 }}
+                transition={{ type: "spring", stiffness: 400, damping: 10 }}
+              >
+                <Button 
+                  variant="ghost" 
+                  className="text-gray-300 hover:text-white hover:bg-white/5 rounded-lg px-5 py-2 transition-all duration-300"
+                >
+                  Log In
+                </Button>
+              </motion.div>
+              <motion.div
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                transition={{ type: "spring", stiffness: 400, damping: 10 }}
+              >
+                <Button className="bg-gradient-to-r from-blue-500 via-indigo-500 to-purple-600 hover:from-blue-600 hover:via-indigo-600 hover:to-purple-700 text-white border-none shadow-lg shadow-blue-500/20 hover:shadow-blue-500/30 transition-all duration-300 rounded-lg px-6 py-2">
+                  Get Started
+                </Button>
+              </motion.div>
             </div>
           </div>
 
-          <button
-            className="md:hidden text-gray-300 hover:text-white"
+          <motion.button
+            className="md:hidden text-gray-300 hover:text-white p-2 rounded-lg hover:bg-white/5 transition-all"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.9 }}
           >
             {isMobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-          </button>
+          </motion.button>
         </div>
 
         <AnimatePresence>
           {isMobileMenuOpen && (
             <motion.div
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: 'auto' }}
-              exit={{ opacity: 0, height: 0 }}
-              transition={{ duration: 0.3 }}
+              initial={{ opacity: 0, height: 0, y: -20 }}
+              animate={{ opacity: 1, height: 'auto', y: 0 }}
+              exit={{ opacity: 0, height: 0, y: -20 }}
+              transition={{ duration: 0.3, type: "spring", stiffness: 300, damping: 30 }}
               className="md:hidden mt-4 w-full"
             >
-              <div className="flex flex-col space-y-4 pt-4 pb-6 bg-company-dark/90 backdrop-blur-sm rounded-lg p-4 w-full">
-                <a
-                  href="/sales"
-                  className="text-gray-300 hover:text-white transition-colors py-2 border-l-2 border-transparent hover:border-blue-500 pl-2"
+              <div 
+                className="flex flex-col space-y-4 pt-4 pb-6 rounded-xl p-4 w-full backdrop-blur-xl"
+                style={{
+                  background: "linear-gradient(145deg, rgba(30,30,60,0.9), rgba(20,20,40,0.8))",
+                  boxShadow: "0 10px 25px -5px rgba(0, 0, 0, 0.4), 0 8px 10px -6px rgba(0, 0, 0, 0.2), 0 0 0 1px rgba(255, 255, 255, 0.05) inset, 0 0 15px rgba(120, 120, 255, 0.15)"
+                }}
+              >
+                {/* See the Proof link */}
+                <motion.a
+                  href="/proof"
+                  className="text-gray-300 hover:text-white transition-colors py-3 border-l-2 border-transparent hover:border-blue-500 pl-3 rounded-r-lg hover:bg-white/5"
                   onClick={() => setIsMobileMenuOpen(false)}
+                  whileHover={{ x: 5, backgroundColor: "rgba(255,255,255,0.05)" }}
                 >
-                  Sales
-                </a>
-                <a
-                  href="/marketing"
-                  className="text-gray-300 hover:text-white transition-colors py-2 border-l-2 border-transparent hover:border-blue-500 pl-2"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                >
-                  Marketing
-                </a>
-                <a
-                  href="/engineering"
-                  className="text-gray-300 hover:text-white transition-colors py-2 border-l-2 border-transparent hover:border-blue-500 pl-2"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                >
-                  Engineering
-                </a>
-                <a
-                  href="/orchestration"
-                  className="text-gray-300 hover:text-white transition-colors py-2 border-l-2 border-transparent hover:border-blue-500 pl-2"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                >
-                  Orchestration
-                </a>
-                <div className="pt-2 flex flex-col space-y-3">
-                  <Button variant="ghost" className="text-gray-300 hover:text-white hover:bg-company-dark/50 w-full">
+                  See the Proof
+                </motion.a>
+                
+                {/* Meet The Team Dropdown for mobile */}
+                <div className="">
+                  <motion.button
+                    className="flex items-center w-full text-gray-300 hover:text-white transition-colors py-3 border-l-2 border-transparent hover:border-blue-500 pl-3 rounded-r-lg hover:bg-white/5 focus:outline-none"
+                    onClick={() => setIsDropdownOpen((open) => !open)}
+                    whileHover={{ x: 5 }}
+                  >
+                    Meet The Team
+                    <ChevronDown className="ml-1 w-4 h-4 transition-transform duration-200" style={{ transform: isDropdownOpen ? 'rotate(180deg)' : 'rotate(0deg)' }} />
+                  </motion.button>
+                  <AnimatePresence>
+                    {isDropdownOpen && (
+                      <motion.div
+                        initial={{ opacity: 0, height: 0 }}
+                        animate={{ opacity: 1, height: 'auto' }}
+                        exit={{ opacity: 0, height: 0 }}
+                        transition={{ duration: 0.2 }}
+                        className="ml-5 mt-2 border-l border-blue-500/30 pl-4"
+                      >
+                        {[
+                          { href: "/sales", label: "Sales", color: "bg-blue-500" },
+                          { href: "/marketing", label: "Marketing", color: "bg-purple-500" },
+                          { href: "/engineering", label: "Engineering", color: "bg-cyan-500" },
+                          { href: "/orchestration", label: "Orchestration", color: "bg-green-500" }
+                        ].map((item, index) => (
+                          <motion.a 
+                            key={item.href}
+                            href={item.href} 
+                            className="flex items-center py-3 text-gray-300 hover:text-white transition-colors rounded-lg hover:bg-white/5 pl-2"
+                            initial={{ opacity: 0, x: -10 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            transition={{ delay: index * 0.05 }}
+                            whileHover={{ x: 5 }}
+                            onClick={() => setIsMobileMenuOpen(false)}
+                          >
+                            <div className={`w-2 h-2 rounded-full ${item.color} mr-2.5`}></div>
+                            {item.label}
+                          </motion.a>
+                        ))}
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+                <div className="pt-3 flex flex-col space-y-3 border-t border-white/10">
+                  <Button variant="ghost" className="text-gray-300 hover:text-white hover:bg-white/5 transition-all duration-300 w-full justify-start">
                     Log In
                   </Button>
-                  <Button className="bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white border-none shadow-md hover:shadow-lg transition-all duration-300 w-full">
+                  <Button className="bg-gradient-to-r from-blue-500 via-indigo-500 to-purple-600 hover:from-blue-600 hover:via-indigo-600 hover:to-purple-700 text-white border-none shadow-md hover:shadow-lg transition-all duration-300 w-full">
                     Get Started
                   </Button>
                 </div>
@@ -123,6 +235,8 @@ const Navbar = () => {
           )}
         </AnimatePresence>
       </nav>
+      
+      <div className="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-blue-500/20 to-transparent opacity-50"></div>
     </header>
   );
 };

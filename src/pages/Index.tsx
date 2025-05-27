@@ -3,6 +3,7 @@ import Navbar from '../components/Navbar';
 import HeroSection from '../components/HeroSection';
 import AIColleagueShowcase from '../components/AIAssistantsSection';
 import DemoSection from '../components/DemoSection';
+import IntegrationsSection from '../components/IntegrationsSection';
 // import CTASection from '../components/CTASection';
 import Footer from '../components/Footer';
 import LoadingScreen from '../components/LoadingScreen';
@@ -216,6 +217,16 @@ const Index = () => {
           <AnimatedSection delay={0.2} className="relative z-10">
             <ScrollSection speed={-0.35} className="relative z-10">
               <DemoSection />
+            </ScrollSection>
+          </AnimatedSection>
+
+          {/* Decorative divider */}
+          <ScrollDivider />
+          
+          {/* Integrations Section */}
+          <AnimatedSection delay={0.3} className="relative z-10">
+            <ScrollSection speed={-0.25} className="relative z-10">
+              <IntegrationsSection />
             </ScrollSection>
           </AnimatedSection>
           
